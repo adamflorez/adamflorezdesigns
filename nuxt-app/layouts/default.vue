@@ -1,18 +1,18 @@
 <template>
-  <div class="min-h-screen bg-yellow-100">
-    <div class="w-full bg-orange-200">
+  <div class="min-h-screen">
+    <UContainer>
       <div class="flex container mx-auto p-4 justify-between items-center">
         <div>Logo</div>
         <nav class="gap-3 flex items-center">
-          <NuxtLink>Products</NuxtLink>
-          <button class="py-2 px-5 hover:bg-orange-400" @click="logout">
-            Logout
-          </button>
+          <ULink to="/products">Products</ULink>
+          <ULink to="/ingredients">Ingredients</ULink>
+          <UButton @click="logout"> Logout </UButton>
         </nav>
       </div>
-    </div>
-
-    <slot />
+    </UContainer>
+    <UContainer>
+      <slot />
+    </UContainer>
   </div>
 </template>
 

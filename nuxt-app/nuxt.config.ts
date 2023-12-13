@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/supabase"],
+  modules: ["@nuxtjs/supabase", "@nuxt/ui"],
   devtools: { enabled: true },
   supabase: {
     redirectOptions: {
@@ -8,5 +8,8 @@ export default defineNuxtConfig({
       callback: "/confirm",
       exclude: ["/register"],
     },
+  },
+  ui: {
+    global: true,
   },
 });
