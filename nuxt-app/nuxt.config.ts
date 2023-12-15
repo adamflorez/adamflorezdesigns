@@ -12,4 +12,9 @@ export default defineNuxtConfig({
   ui: {
     global: true,
   },
+  runtimeConfig: {
+    public: {
+      eden: process.env.EDEN_KEY,
+    },
+  },
 });

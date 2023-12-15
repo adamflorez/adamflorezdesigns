@@ -2,15 +2,21 @@ import type loginVue from '~/pages/login.vue'; import type { userStore } from
 '~/stores/user';
 <template>
   <UCard class="basis-2/3">
-    <UTable :columns="headers" :rows="modelValue">
+    <UTable v-model="selected" :columns="headers" :rows="modelValue">
       <template #cost_per_unit-data="{ row }">
-        {{ USDollar.format(row.cost_per_unit) }}
+        {{ useFormatter().USDollar.format(row.cost_per_unit) }}
       </template>
       <template #cost-data="{ row }">
-        {{ USDollar.format(row.cost) }}
+        {{ useFormatter().USDollar.format(row.cost) }}
       </template>
     </UTable>
+    <template #footer v-if="selected.length > 0">
+      <UButton @click="isOpen = true">Create Product</UButton>
+    </template>
   </UCard>
+  <UModal v-model="isOpen" fullscreen>
+    <ProductsAddProduct v-model="selected" @close="isOpen = false" />
+  </UModal>
 </template>
 
 <script setup>
@@ -23,10 +29,11 @@ const headers = ref([
   { label: "Units Of Measurements", key: "unit_of_measurement" },
   { label: "CPU", key: "cost_per_unit" },
 ]);
-
-let USDollar = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
+const isOpen = ref(false);
+const selected = ref([]);
+console.log();
+watch(selected, (val) => {
+  console.log(val);
 });
 </script>
 

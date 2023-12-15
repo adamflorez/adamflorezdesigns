@@ -1,7 +1,11 @@
 <template>
-  <UContainer class="flex gap-4">
-    <IngredientsAddIngredient @added="getIngredients" />
-    <IngredientsIngredientTable v-model="items" />
+  <UContainer>
+    <div class="flex gap-4 mb-4">
+      <IngredientsAddIngredient @added="getIngredients" />
+      <IngredientsIngredientTable v-model="items" />
+    </div>
+
+    <!-- <IngredientsUploadReceipt /> -->
   </UContainer>
 </template>
 
