@@ -1,16 +1,12 @@
 <template>
   <UContainer>
-    <UButton
-      icon="i-heroicons-plus"
-      class="mb-4"
-      @click="addIngredientModal = true"
-    >
-      Add Ingredient
+    <UButton icon="i-heroicons-plus" class="mb-4" @click="addItemModal = true">
+      Add Item
     </UButton>
-    <UModal v-model="addIngredientModal">
-      <IngredientsAddIngredient @added="getIngredients" />
+    <UModal v-model="addItemModal">
+      <InventoryAddItem @added="getInventory" />
     </UModal>
-    <IngredientsIngredientTable v-model="items" />
+    <InventoryTable v-model="items" />
     <!-- <IngredientsUploadReceipt /> -->
   </UContainer>
 </template>
@@ -19,9 +15,9 @@
 const client = useSupabaseClient();
 const user = useSupabaseUser();
 const { id } = user.value;
-const addIngredientModal = ref(false);
+const addItemModal = ref(false);
 const items = ref([]);
-const getIngredients = async () => {
+const getInventory = async () => {
   items.value = [];
   try {
     const { data, error } = await client
@@ -35,10 +31,14 @@ const getIngredients = async () => {
     });
   } catch (err) {
     console.error(err);
+  } finally {
+    if (addItemModal.value) {
+      addItemModal.value = false;
+    }
   }
 };
 onMounted(() => {
-  getIngredients();
+  getInventory();
 });
 </script>
 

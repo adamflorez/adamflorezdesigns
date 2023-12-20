@@ -10,7 +10,11 @@ import type loginVue from '~/pages/login.vue'; import type { userStore } from
         {{ useFormatter().USDollar.format(row.cost) }}
       </template>
       <template #actions-data="{ row }">
-        <UButton icon="i-heroicons-pencil" class="mr-2" @click="selectItem(row)"></UButton>
+        <UButton
+          icon="i-heroicons-pencil"
+          class="mr-2"
+          @click="selectItem(row)"
+        ></UButton>
         <UButton
           icon="i-heroicons-trash"
           color="red"

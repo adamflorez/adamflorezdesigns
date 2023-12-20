@@ -5,7 +5,7 @@
         <div>Logo</div>
         <nav class="gap-3 flex items-center">
           <ULink to="/products">Products</ULink>
-          <ULink to="/ingredients">Ingredients</ULink>
+          <ULink to="/inventory">Inventory</ULink>
           <UButton @click="logout"> Logout </UButton>
           <UButton
             :icon="

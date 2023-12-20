@@ -2,6 +2,8 @@ const UOM = [
   { name: "Teaspoon(s)", value: "tsp" },
   { name: "Tablespoon(s)", value: "tbsp" },
   { name: "Fluid ounce(s)", value: "fl oz" },
+  { name: "Grams(s)", value: "g" },
+  { name: "Milliliter(s)", value: "ml" },
   { name: "Cup(s)", value: "c" },
   { name: "Pint(s)", value: "pt" },
   { name: "Quart(s)", value: "qt" },
