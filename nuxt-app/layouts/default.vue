@@ -7,6 +7,15 @@
           <ULink to="/products">Products</ULink>
           <ULink to="/ingredients">Ingredients</ULink>
           <UButton @click="logout"> Logout </UButton>
+          <UButton
+            :icon="
+              isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'
+            "
+            color="gray"
+            variant="ghost"
+            aria-label="Theme"
+            @click="isDark = !isDark"
+          />
         </nav>
       </div>
     </UContainer>
@@ -19,6 +28,17 @@
 <script setup>
 const client = useSupabaseClient();
 const router = useRouter();
+
+const colorMode = useColorMode();
+
+const isDark = computed({
+  get() {
+    return colorMode.value === "dark";
+  },
+  set() {
+    colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
+  },
+});
 
 const logout = async () => {
   try {

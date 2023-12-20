@@ -1,10 +1,16 @@
 <template>
   <UContainer>
-    <div class="flex gap-4 mb-4">
+    <UButton
+      icon="i-heroicons-plus"
+      class="mb-4"
+      @click="addIngredientModal = true"
+    >
+      Add Ingredient
+    </UButton>
+    <UModal v-model="addIngredientModal">
       <IngredientsAddIngredient @added="getIngredients" />
-      <IngredientsIngredientTable v-model="items" />
-    </div>
-
+    </UModal>
+    <IngredientsIngredientTable v-model="items" />
     <!-- <IngredientsUploadReceipt /> -->
   </UContainer>
 </template>
@@ -13,7 +19,7 @@
 const client = useSupabaseClient();
 const user = useSupabaseUser();
 const { id } = user.value;
-
+const addIngredientModal = ref(false);
 const items = ref([]);
 const getIngredients = async () => {
   items.value = [];
@@ -27,8 +33,6 @@ const getIngredients = async () => {
     items.value = data.map((i) => {
       return { ...i, cost_per_unit: i.cost / i.amount_of_units };
     });
-
-    console.log(items.value);
   } catch (err) {
     console.error(err);
   }

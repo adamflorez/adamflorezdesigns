@@ -91,16 +91,10 @@ const unitsNeeded = ref([]);
 const uom = ref(UOM);
 
 const addRecipe = async () => {
-  const { number, fromUnit, toUnit, result, convertUnits } = useUnitConverter();
-
   for (let i of state.value.items) {
-    (number.value = i.units_needed),
-      (fromUnit.value = i.uom),
-      (toUnit.value = i.unit_of_measurement),
-      convertUnits();
-
-    i.amount_of_units = i.amount_of_units -= result.value;
-    console.log({ result: result.value }, { amount: i.amount_of_units });
+    let val = useUnitConverter(i.units_needed, i.uom, i.unit_of_measurement);
+    i.amount_of_units = i.amount_of_units - val;
+    console.log(i);
   }
 
   console.log(state.value);

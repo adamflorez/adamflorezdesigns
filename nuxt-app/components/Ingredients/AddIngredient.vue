@@ -1,5 +1,5 @@
 <template>
-  <UCard class="basis-1/3">
+  <UCard class="basis-1/3 mb-4 md:mb-0">
     <template #header>
       <h2 class="text-xl text-center">Add Ingredient</h2>
     </template>
@@ -68,6 +68,14 @@ const addIngredient = async () => {
     const { error } = await client.from("ingredients").insert(state.value);
     if (error) throw error;
     emit("added");
+    state.value = {
+      name: "",
+      description: "",
+      cost: 0,
+      amount_of_units: 0,
+      unit_of_measurement: "",
+      user_id: id,
+    };
   } catch (error) {
     console.error(error);
   }
